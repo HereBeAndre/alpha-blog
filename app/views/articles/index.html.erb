@@ -1,5 +1,19 @@
 <h1>Index page for articles</h1>
-<% @articles.each do |article| %>
-  <h2>Title:<%=  article.title %></h2>
-  <h3>Description:<%=  article.description %></h3>
-<% end %>
+<table>
+  <thhead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><h3><%=  article.title %></h3></td>
+        <td><p><%=  article.description %></p></td>
+        <td>Placeholder</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
