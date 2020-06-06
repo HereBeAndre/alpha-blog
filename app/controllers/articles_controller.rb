@@ -9,6 +9,8 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    # Send empty instance variable to form page in order for flash to work
+    @article = Article.new
   end
 
   def create
@@ -16,11 +18,16 @@ class ArticlesController < ApplicationController
     # render plain: params[:article]
 
     @article = Article.new(article_params)
-    # Same debugging hack as above
+    # Similar debugging hack as above
     # render plain: @article.inspect
-    @article.save
-    redirect_to @article # Shortened for standard line below
-    # redirect_to article_path(@article)
+
+    if @article.save
+      flash[:notice] = 'Article was successfully created.'
+      redirect_to @article # Shortened for standard line below
+      # redirect_to article_path(@article)
+    else
+      render 'new'
+    end
   end
 
   private
